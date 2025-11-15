@@ -1,0 +1,22 @@
+services:
+  source-db:
+    image: mysql:8.0
+    container_name: source-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: origin_batch
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./source-mysql-data:/var/lib/mysql
+  target-db:
+    image: postgres:13
+    container_name: target-postgres
+    environment:
+      POSTGRES_DB: target_batch
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./target-postgres-data:/var/lib/postgresql/data

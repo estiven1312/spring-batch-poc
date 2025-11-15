@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: poc-batch
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false # Disable automatic job execution on startup
+# DataSource configurations for origin (MySQL) and target (PostgreSQL) databases
+server:
+  port: 8085
+datasource:
+  datasources:
+    origin:
+      url: jdbc:mysql://localhost:3308/origin_batch
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      pool-size: 10
+    target:
+      url: jdbc:postgresql://localhost:5435/target_batch
+      username: user
+      password: password
+      driver-class-name: org.postgresql.Driver
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      pool-size: 10
