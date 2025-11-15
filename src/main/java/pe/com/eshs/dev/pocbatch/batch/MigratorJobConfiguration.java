@@ -43,7 +43,7 @@ public class MigratorJobConfiguration {
   @Bean
   public Step itemFailedSave(
       @Qualifier("originTransactionManager") JdbcTransactionManager originTransactionManager) {
-    return new StepBuilder("itemWriterStep", jobRepository)
+    return new StepBuilder("itemFailedSaveStep", jobRepository)
         .tasklet(itemFailedSaveStep(), originTransactionManager)
         .build();
   }
